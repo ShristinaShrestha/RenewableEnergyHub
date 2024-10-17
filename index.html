@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renewable Energy Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='image/2.png') }}" alt="Renewable Energy Logo" style="max-width: 200px; height: auto;">
+        <h1>Renewable Energy Information Hub</h1>
+        <p>Search through our database of renewable energy resources.</p>
+    </header>
+    <div class="container">
+        <form method="POST" action="/">
+            <input type="text" name="query" placeholder="Enter search terms..." required>
+            <input type="submit" value="Search">
+        </form>
+
+        <header>
+            <h3>Top Search Results for "{{ query }}"</h3>
+        </header>
+        <!-- Display results or no-match message -->
+        {% if docs %}
+            {% for filename, score in docs %}
+                <div class="result-box">
+                    <p class="result-title">
+                        <a href="{{ url_for('article', filename=filename|replace(' ', '_')) }}">{{ filename }}</a>
+                    </p>
+                    <p class="similarity-score">Similarity: {{ "%.4f"|format(score) }}</p>
+                </div>
+            {% endfor %}
+        {% elif message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

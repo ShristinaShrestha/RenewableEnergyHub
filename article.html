@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ filename }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            margin-bottom: 20px;
+        }
+        .article-container {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;  /* Prevent overflow of the content */
+            word-wrap: break-word; /* Break long words */
+        }
+        .article-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .article-content {
+            white-space: pre-line; /* Preserve new lines and spacing, while allowing wrapping */
+            line-height: 1.6;
+            max-width: 100%;
+            overflow-wrap: break-word; /* Ensure long words wrap properly */
+        }
+        footer {
+            margin-top: 30px;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ filename }}</h1>
+    </header>
+
+    <div class="article-container">
+        <div class="article-title">{{ filename }}</div>
+        <div class="article-content">
+            {{ content }}
+        </div>
+    </div>
+
+    <footer>
+        <a class="back-link" href="{{ url_for('search', query=query) }}">Back to Search Results</a>
+    </footer>
+</body>
+</html>
